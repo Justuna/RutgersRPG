@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec3fd5ea399c154996ec596456a8281, type: 3}
-  m_Name: ThirdThingDrain
+  m_Script: {fileID: 11500000, guid: 1ecbc691e6d68794eb6f78569dfb9914, type: 3}
+  m_Name: ThirdThingEffect
   m_EditorClassIdentifier: 
-  TargetHPChange: -10
-  Multiplier: 0.5
-  Recoil: 0
+  RawManaChange: 0
