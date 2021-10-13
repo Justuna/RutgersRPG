@@ -18,12 +18,14 @@ public class MoveMenu : MonoBehaviour
     {
         _canvasGroup.interactable = false;
         _canvasGroup.alpha = 0f;
+        _canvasGroup.blocksRaycasts = false;
     }
 
     public void Show()
     {
         _canvasGroup.interactable = true;
         _canvasGroup.alpha = 1f;
+        _canvasGroup.blocksRaycasts = true;
     }
 
     public void AddMenuItems(List<MoveSpec> list)

@@ -9,8 +9,19 @@ public enum MoveType {WEAPON, MAGIC, STATUS, OTHER}
 public class MoveSpec : ScriptableObject
 {
     public string Name;
+    public int ManaCost;
     public MoveType Type;
     public List<Effect> Effects;
+
+    public bool CheckCost(Unit user) 
+    {
+        return user.GetMana() >= ManaCost;
+    }
+
+    public int GetCost() 
+    {
+        return ManaCost;
+    }
 
     public void UseMove(Unit user, Unit target)
     {

@@ -5,11 +5,12 @@ using UnityEngine;
 public class MoveChooser : MonoBehaviour
 {
     public MoveSpec move;
+    public Unit unit;
 
     public MoveChosenEvent moveChosenEvent = default;
 
     public void ChooseMove()
     {
-        moveChosenEvent.Invoke(move);
+        if (move.CheckCost(unit)) moveChosenEvent.Invoke(move);
     }
 }

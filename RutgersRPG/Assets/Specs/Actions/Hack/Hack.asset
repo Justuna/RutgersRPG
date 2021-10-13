@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Hack
   m_EditorClassIdentifier: 
   Name: Hack
+  ManaCost: 0
   Type: 3
   Effects:
   - {fileID: 11400000, guid: a3e9b0ca5fbbf964081f2de25d2c5c93, type: 2}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Slash
   m_EditorClassIdentifier: 
   Name: Slash
+  ManaCost: 1
   Type: 3
   Effects:
   - {fileID: 11400000, guid: b1688d44f73b4df48a5105c69458e2b7, type: 2}

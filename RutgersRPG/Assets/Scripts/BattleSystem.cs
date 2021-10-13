@@ -22,10 +22,11 @@ public class BattleSystem : MonoBehaviour
     public GameObject PCUnitPrefab, NPCUnitPrefab;
     public List<Transform> PlayerPositions, EnemyPositions;
     public List<UnitSpec> PlayerUnitSpecs, EnemyUnitSpecs;
+    private int _currentPlayerIndex = 0;
+    [SerializeField]
     private List<PCUnit> _playerUnits = new List<PCUnit>();
+    [SerializeField]
     private List<NPCUnit> _enemyUnits = new List<NPCUnit>();
-    private List<Unit> _turnOrder;
-    private MoveSpec _playerMove, _enemyMove;
 
     // Start is called before the first frame update
     void Start()
@@ -36,60 +37,67 @@ public class BattleSystem : MonoBehaviour
             _playerUnits.Add(player.GetComponent<PCUnit>());
             _playerUnits[i].Initialize(PlayerUnitSpecs[i]);
         }
-        
+
+        //_playerUnits.Sort((x, y) => (y.GetSpeed() - x.GetSpeed()));
+
         for (int i = 0; i < EnemyUnitSpecs.Count; i++)
         {
             GameObject enemy = Instantiate(NPCUnitPrefab, EnemyPositions[i]);
             _enemyUnits.Add(enemy.GetComponent<NPCUnit>());
             _enemyUnits[i].Initialize(EnemyUnitSpecs[i]);
         }
+        
+        _enemyUnits.Sort((x, y) => (y.GetSpeed() - x.GetSpeed()));
 
         DisplayMoves();
     }
 
     void DisplayMoves()
     {
-        _playerUnits[0].Menu.Show();
+        _playerUnits[_currentPlayerIndex].Menu.Show();
+        //Debug.Log("Displaying menu for character " + _currentPlayerIndex);
     }
 
     public void RecordMove(MoveSpec move)
     {
-        _playerMove = move;
-        Debug.Log("Resolving Moves...");
+        //Debug.Log("Player chose " + move.Name);
+        _playerUnits[_currentPlayerIndex].SetMove(move);
+        _playerUnits[_currentPlayerIndex].Menu.Hide();
+        _currentPlayerIndex++;
+        if (_currentPlayerIndex < _playerUnits.Count) {
+            //Debug.Log(_currentPlayerIndex);
+            DisplayMoves();
+        }
+        else ChooseEnemyMoves();
+    }
+    void ChooseEnemyMoves() {
+        foreach (NPCUnit u in _enemyUnits) {
+            u.ChooseMove();
+        }
         StartCoroutine(ResolveMoves());
     }
 
     IEnumerator ResolveMoves()
     {
-        _playerUnits[0].Menu.Hide();
-        ChooseEnemyMoves();
-        _playerMove.UseMove(_playerUnits[0], _enemyUnits[0]);
-        if (_enemyUnits[0].IsDead())
-        {
-            Debug.Log("Victory!");
-            //Call some end screen function
-            yield break;
+        for (int i = 0; i < _playerUnits.Count; i++) {
+            _playerUnits[i].UseMove(_playerUnits[i], _enemyUnits[i]);
+            if (_enemyUnits.TrueForAll((u) => u.IsDead())) {
+                Debug.Log("Victory!");
+                //Call some end screen function
+                yield break;
+            }
+            yield return new WaitForSeconds(2);
         }
-        yield return new WaitForSeconds(3);
-        _enemyMove.UseMove(_enemyUnits[0], _playerUnits[0]);
-        if (_playerUnits[0].IsDead())
-        {
-            Debug.Log("Defeat!");
-            //Call some end screen function
-            yield break;
+        for (int i = 0; i < _enemyUnits.Count; i++) {
+            _enemyUnits[i].UseMove(_enemyUnits[i], _playerUnits[i]);
+            if (_playerUnits.TrueForAll((u) => u.IsDead())) {
+                Debug.Log("Defeat!");
+                //Call some end screen function
+                yield break;
+            }
+            yield return new WaitForSeconds(2);
         }
-        yield return new WaitForSeconds(3);
+        _currentPlayerIndex = 0;
         DisplayMoves();
-    }
-
-    void ChooseEnemyMoves()
-    {
-        _enemyMove = _enemyUnits[0].Movepool[(int)Mathf.Round(Random.value)];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
