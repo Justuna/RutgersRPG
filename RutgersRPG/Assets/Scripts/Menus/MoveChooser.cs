@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveChooser : MonoBehaviour
 {
     public MoveSpec move;
-    public Unit unit;
+    public PCUnit unit;
 
     public MoveChosenEvent moveChosenEvent = default;
 

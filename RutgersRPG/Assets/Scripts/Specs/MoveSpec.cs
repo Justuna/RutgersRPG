@@ -13,7 +13,7 @@ public class MoveSpec : ScriptableObject
     public MoveType Type;
     public List<Effect> Effects;
 
-    public bool CheckCost(Unit user) 
+    public bool CheckCost(PCUnit user) 
     {
         return user.GetMana() >= ManaCost;
     }

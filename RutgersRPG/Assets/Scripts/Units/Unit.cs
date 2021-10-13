@@ -11,9 +11,6 @@ public abstract class Unit : MonoBehaviour
     public int CurrentHealth;
     public int MaxHealth;
 
-    public int CurrentMana;
-    public int MaxMana;
-
     public int Speed;
 
     public TeamType Type;
@@ -32,13 +29,11 @@ public abstract class Unit : MonoBehaviour
         this.Spec = Spec;
         Name = Spec.Name;
         CurrentHealth = MaxHealth = Spec.Health;
-        CurrentMana = MaxMana = Spec.Mana;
         Speed = Spec.Speed;
         Type = Spec.Type;
         ChildSprite.sprite = Spec.BattleSprite;
         Movepool = Spec.Movepool;
 
-        if (manabar != null) manabar.SetMaxValue(MaxMana);
         healthbar.SetMaxValue(MaxHealth);
     }
 
@@ -50,25 +45,12 @@ public abstract class Unit : MonoBehaviour
         return _currentMove;
     }
 
-    public void UseMove(Unit user, Unit target) {
-        SetMana(-_currentMove.GetCost());
+    public virtual void UseMove(Unit user, Unit target) {
         _currentMove.UseMove(user, target);
     }
 
     public int GetSpeed() {
         return Speed;
-    }
-
-    public int GetMana() {
-        return CurrentMana;
-    }
-
-    public void SetMana(int amount) {
-        CurrentMana += amount;
-        if (CurrentMana < 0) CurrentMana = 0;
-        if (CurrentMana > MaxMana) CurrentMana = MaxMana;
-
-        if (manabar != null) manabar.UpdateValue(CurrentMana);
     }
 
     public int SetHealth(int amount)

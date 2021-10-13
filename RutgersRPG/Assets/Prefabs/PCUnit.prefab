@@ -844,8 +844,6 @@ MonoBehaviour:
   Name: 
   CurrentHealth: 0
   MaxHealth: 0
-  CurrentMana: 0
-  MaxMana: 0
   Speed: 0
   Type: 0
   Spec: {fileID: 0}
@@ -854,6 +852,8 @@ MonoBehaviour:
   manabar: {fileID: 2119590035390530227}
   Movepool: []
   Menu: {fileID: 4387974488396577932}
+  CurrentMana: 0
+  MaxMana: 0
 --- !u!1 &7464557991502474101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,9 +1404,9 @@ MonoBehaviour:
   slider: {fileID: 1488387418205893260}
   gradient:
     serializedVersion: 2
-    key0: {r: 0.29729933, g: 0.24470451, b: 0.4433962, a: 1}
-    key1: {r: 0.12406549, g: 0.42862627, b: 0.6415094, a: 1}
-    key2: {r: 0.18396229, g: 1, b: 0.80809677, a: 0}
+    key0: {r: 0.13501246, g: 0.2211634, b: 0.7735849, a: 1}
+    key1: {r: 0.40927675, g: 0.25618547, b: 0.9528302, a: 1}
+    key2: {r: 0.9390978, g: 0.28773582, b: 1, a: 0}
     key3: {r: 0.18396229, g: 1, b: 0.80809677, a: 0}
     key4: {r: 0.18396229, g: 1, b: 0.80809677, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
