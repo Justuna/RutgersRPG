@@ -44,8 +44,7 @@ public class MoveMenu : MonoBehaviour
         menuItem.transform.SetParent(_content.transform, false);
         menuItem.SetActive(true);
         menuItem.GetComponentInChildren<Text>().text = label;
-        MoveChooser moveChooser = menuItem.GetComponent<MoveChooser>();
+        MoveSelector moveChooser = menuItem.GetComponent<MoveSelector>();
         moveChooser.move = move;
-        moveChooser.moveChosenEvent.AddListener(BattleSystem.Instance.RecordMove);
     }
 }

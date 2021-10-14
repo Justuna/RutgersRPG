@@ -12,10 +12,15 @@ public class MoveSpec : ScriptableObject
     public int ManaCost;
     public MoveType Type;
     public List<Effect> Effects;
+    public TargetSpec Targets;
 
-    public bool CheckCost(PCUnit user) 
+    public bool CheckCost(Unit user) 
     {
-        return user.GetMana() >= ManaCost;
+        if (user is PCUnit) {
+            PCUnit PCuser = (PCUnit)user;
+            return PCuser.GetMana() >= ManaCost;
+        }
+        return true;
     }
 
     public int GetCost() 
@@ -23,12 +28,13 @@ public class MoveSpec : ScriptableObject
         return ManaCost;
     }
 
-    public void UseMove(Unit user, Unit target)
+    public void UseMove(Unit user, List<Unit> targets)
     {
-        Debug.Log(user.Name + " used " + Name + " on " + target.Name);
-        foreach (Effect e in Effects)
-        {
-            e.Apply(user, target);
+        foreach (Unit t in targets) {
+            Debug.Log(user.Name + " used " + Name + " on " + t.Name);
+            foreach (Effect e in Effects) {
+                e.Apply(user, t);
+            }
         }
     }
 }

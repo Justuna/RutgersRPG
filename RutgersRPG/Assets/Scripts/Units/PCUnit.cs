@@ -6,6 +6,7 @@ public class PCUnit : Unit
 {
     // Start is called before the first frame update
     public MoveMenu Menu;
+    public ResourceMeter Manabar;
 
     public int CurrentMana;
     public int MaxMana;
@@ -14,13 +15,8 @@ public class PCUnit : Unit
     {
         base.Initialize(Spec);
         CurrentMana = MaxMana = Spec.Mana;
-        manabar.SetMaxValue(MaxMana);
+        Manabar.SetMaxValue(MaxMana);
         Menu.AddMenuItems(Movepool);
-    }
-
-    public override void UseMove(Unit user, Unit target) {
-        SetMana(-GetMove().GetCost());
-        base.UseMove(user, target);
     }
 
     public int GetMana() {
@@ -32,6 +28,6 @@ public class PCUnit : Unit
         if (CurrentMana < 0) CurrentMana = 0;
         if (CurrentMana > MaxMana) CurrentMana = MaxMana;
 
-        if (manabar != null) manabar.UpdateValue(CurrentMana);
+        if (Manabar != null) Manabar.UpdateValue(CurrentMana);
     }
 }

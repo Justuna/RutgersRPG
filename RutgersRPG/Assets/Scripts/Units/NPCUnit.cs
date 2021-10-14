@@ -11,8 +11,8 @@ public class NPCUnit : Unit
         base.Initialize(Spec);
     }
 
-    public void ChooseMove()
+    public MoveSpec ChooseMove()
     {
-        base.SetMove(base.Movepool[(int)Mathf.Round(Random.value)]);
+        return (base.Movepool[Random.Range(0, base.Movepool.Count)]);
     }
 }

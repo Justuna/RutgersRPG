@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TeamType {PLAYER, ENEMY, NEUTRAL, FRIENDLY}
+public enum TeamType {PLAYER, ENEMY}
 
 public abstract class Unit : MonoBehaviour
 {
@@ -12,16 +12,16 @@ public abstract class Unit : MonoBehaviour
     public int MaxHealth;
 
     public int Speed;
+    public int Threat;
 
     public TeamType Type;
 
     public UnitSpec Spec;
 
     public SpriteRenderer ChildSprite;
-    public ResourceMeter healthbar;
-    public ResourceMeter manabar;
+    public ResourceMeter Healthbar;
+    public UnitSelector Selector;
 
-    private MoveSpec _currentMove;
     public List<MoveSpec> Movepool;
 
     public virtual void Initialize(UnitSpec Spec)
@@ -34,19 +34,7 @@ public abstract class Unit : MonoBehaviour
         ChildSprite.sprite = Spec.BattleSprite;
         Movepool = Spec.Movepool;
 
-        healthbar.SetMaxValue(MaxHealth);
-    }
-
-    public void SetMove(MoveSpec move) {
-        _currentMove = move;
-    }
-
-    public MoveSpec GetMove() {
-        return _currentMove;
-    }
-
-    public virtual void UseMove(Unit user, Unit target) {
-        _currentMove.UseMove(user, target);
+        Healthbar.SetMaxValue(MaxHealth);
     }
 
     public int GetSpeed() {
@@ -60,7 +48,7 @@ public abstract class Unit : MonoBehaviour
         if (CurrentHealth < 0) CurrentHealth = 0;
         if (CurrentHealth > MaxHealth) CurrentHealth = MaxHealth;
 
-        healthbar.UpdateValue(CurrentHealth);
+        Healthbar.UpdateValue(CurrentHealth);
         return initialHealth - CurrentHealth;
     }
 
@@ -69,5 +57,11 @@ public abstract class Unit : MonoBehaviour
         return CurrentHealth == 0;
     }
 
-    
+    public void DisplaySelection() {
+        Selector.PotentialTarget();
+    }
+
+    public void HideSelection() {
+        Selector.NoLongerTarget();
+    }
 }
