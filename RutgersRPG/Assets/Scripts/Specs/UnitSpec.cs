@@ -7,6 +7,7 @@ public class UnitSpec : ScriptableObject
 {
     public string Name;
     public int Health;
+    public int Mana;
     public int Speed;
     public TeamType Type;
     public Sprite BattleSprite;
