@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebca8ce26d759ac4f8c11c880af46189, type: 3}
-  m_Name: SlashDamage
+  m_Script: {fileID: 11500000, guid: c79ca3ab7007e874f9fbc809f048a828, type: 3}
+  m_Name: Roar
   m_EditorClassIdentifier: 
-  RawHPChange: -5
+  Name: Roar
+  ManaCost: 0
+  Type: 3
+  Effects:
+  - {fileID: 11400000, guid: 02b904cc1c4729c408c35f1b980f902a, type: 2}
+  Targets: {fileID: 11400000, guid: d6b2ad12992b75e41983924cde6e41ae, type: 2}

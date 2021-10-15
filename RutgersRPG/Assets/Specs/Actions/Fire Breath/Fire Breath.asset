@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c79ca3ab7007e874f9fbc809f048a828, type: 3}
-  m_Name: Hack
+  m_Name: Fire Breath
   m_EditorClassIdentifier: 
-  Name: Hack
+  Name: Fire Breath
   ManaCost: 0
   Type: 3
   Effects:
-  - {fileID: 11400000, guid: a3e9b0ca5fbbf964081f2de25d2c5c93, type: 2}
-  Targets: {fileID: 11400000, guid: f5e7697d1be2a2245b76d1d608930c6a, type: 2}
+  - {fileID: 11400000, guid: d92f54668a233db44a6994357ef3a8db, type: 2}
+  Targets: {fileID: 11400000, guid: 790f13c38ac85694a8cc53ab33f3f91e, type: 2}

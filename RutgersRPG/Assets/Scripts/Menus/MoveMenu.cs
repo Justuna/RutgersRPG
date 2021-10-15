@@ -18,12 +18,14 @@ public class MoveMenu : MonoBehaviour
     {
         _canvasGroup.interactable = false;
         _canvasGroup.alpha = 0f;
+        _canvasGroup.blocksRaycasts = false;
     }
 
     public void Show()
     {
         _canvasGroup.interactable = true;
         _canvasGroup.alpha = 1f;
+        _canvasGroup.blocksRaycasts = true;
     }
 
     public void AddMenuItems(List<MoveSpec> list)
@@ -42,8 +44,7 @@ public class MoveMenu : MonoBehaviour
         menuItem.transform.SetParent(_content.transform, false);
         menuItem.SetActive(true);
         menuItem.GetComponentInChildren<Text>().text = label;
-        MoveChooser moveChooser = menuItem.GetComponent<MoveChooser>();
+        MoveSelector moveChooser = menuItem.GetComponent<MoveSelector>();
         moveChooser.move = move;
-        moveChooser.moveChosenEvent.AddListener(BattleSystem.Instance.RecordMove);
     }
 }
