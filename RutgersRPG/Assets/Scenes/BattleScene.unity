@@ -433,14 +433,12 @@ MonoBehaviour:
   - {fileID: 1193258718}
   PlayerUnitSpecs:
   - {fileID: 11400000, guid: 3297acaccde37c948a0cdb3fc6207c83, type: 2}
-  - {fileID: 11400000, guid: 3297acaccde37c948a0cdb3fc6207c83, type: 2}
+  - {fileID: 11400000, guid: 9d40c0d8ca956664ebe3132aae1c9ed6, type: 2}
   - {fileID: 11400000, guid: 3297acaccde37c948a0cdb3fc6207c83, type: 2}
   EnemyUnitSpecs:
   - {fileID: 11400000, guid: 89464a27e1669054bb3f29f371d237db, type: 2}
   - {fileID: 11400000, guid: 89464a27e1669054bb3f29f371d237db, type: 2}
   - {fileID: 11400000, guid: 89464a27e1669054bb3f29f371d237db, type: 2}
-  _playerUnits: []
-  _enemyUnits: []
 --- !u!4 &1578346770
 Transform:
   m_ObjectHideFlags: 0
