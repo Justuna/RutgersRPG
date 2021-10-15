@@ -13,6 +13,6 @@ public class NPCUnit : Unit
 
     public MoveSpec ChooseMove()
     {
-        return base.Movepool[(int)Mathf.Round(Random.value)];
+        return (base.Movepool[Random.Range(0, base.Movepool.Count)]);
     }
 }
