@@ -9,15 +9,32 @@ public enum MoveType {WEAPON, MAGIC, STATUS, OTHER}
 public class MoveSpec : ScriptableObject
 {
     public string Name;
+    public int ManaCost;
     public MoveType Type;
     public List<Effect> Effects;
+    public TargetSpec Targets;
 
-    public void UseMove(Unit user, Unit target)
+    public bool CheckCost(Unit user) 
     {
-        Debug.Log(user.Name + " used " + Name + " on " + target.Name);
-        foreach (Effect e in Effects)
-        {
-            e.Apply(user, target);
+        if (user is PCUnit) {
+            PCUnit PCuser = (PCUnit)user;
+            return PCuser.GetMana() >= ManaCost;
+        }
+        return true;
+    }
+
+    public int GetCost() 
+    {
+        return ManaCost;
+    }
+
+    public void UseMove(Unit user, List<Unit> targets)
+    {
+        foreach (Unit t in targets) {
+            Debug.Log(user.Name + " used " + Name + " on " + t.Name);
+            foreach (Effect e in Effects) {
+                e.Apply(user, t);
+            }
         }
     }
 }

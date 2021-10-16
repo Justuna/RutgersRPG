@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c79ca3ab7007e874f9fbc809f048a828, type: 3}
-  m_Name: Hack
+  m_Name: Third Thing
   m_EditorClassIdentifier: 
-  Name: Hack
-  ManaCost: 0
+  Name: Third Thing
+  ManaCost: 5
   Type: 3
   Effects:
-  - {fileID: 11400000, guid: a3e9b0ca5fbbf964081f2de25d2c5c93, type: 2}
-  Targets: {fileID: 11400000, guid: f5e7697d1be2a2245b76d1d608930c6a, type: 2}
+  - {fileID: 11400000, guid: e42a1aa9d8c8d0f4c8d026f50a683136, type: 2}
+  Targets: {fileID: 11400000, guid: 600ff91cb4df1dd459c166ccfc45a414, type: 2}

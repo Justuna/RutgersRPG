@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebca8ce26d759ac4f8c11c880af46189, type: 3}
-  m_Name: SlashDamage
+  m_Name: ThirdThingEffect
   m_EditorClassIdentifier: 
-  RawHPChange: -5
+  RawHPChange: 1
