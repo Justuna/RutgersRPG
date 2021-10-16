@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebca8ce26d759ac4f8c11c880af46189, type: 3}
   m_Name: HackDamage
   m_EditorClassIdentifier: 
-  RawHPChange: -5
+  RawHPChange: -10
