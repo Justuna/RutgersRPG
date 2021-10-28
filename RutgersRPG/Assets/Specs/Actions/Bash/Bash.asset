@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebca8ce26d759ac4f8c11c880af46189, type: 3}
-  m_Name: FireBreathDamage
+  m_Script: {fileID: 11500000, guid: c79ca3ab7007e874f9fbc809f048a828, type: 3}
+  m_Name: Bash
   m_EditorClassIdentifier: 
-  RawHPChange: -3
+  Name: Bash
+  ManaCost: 0
+  Type: 0
+  Effects:
+  - {fileID: 11400000, guid: f8f8d8d9adc77e4439a1be3f0f26b7c6, type: 2}
+  Targets: {fileID: 11400000, guid: 61025f020e382c74e973c00e466cf941, type: 2}

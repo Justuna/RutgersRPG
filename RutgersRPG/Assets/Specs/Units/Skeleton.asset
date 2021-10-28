@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 892d68e6ec10bed4dbddd419a1d7e076, type: 3}
-  m_Name: Mage
+  m_Name: Skeleton
   m_EditorClassIdentifier: 
-  Name: Mage
-  Health: 40
-  Mana: 50
-  Speed: 40
-  Type: 0
-  BattleSprite: {fileID: 21300000, guid: 2c070b5a719ed0041acb3fa857160b6c, type: 3}
+  Name: Skeleton
+  Health: 35
+  Mana: 0
+  Speed: 30
+  Type: 1
+  BattleSprite: {fileID: 21300000, guid: 24636d941b27a9249a152ed3cbbc6fe6, type: 3}
   Movepool:
-  - {fileID: 11400000, guid: ac49f55641cfdc4419d6fc628a94a3d8, type: 2}
   - {fileID: 11400000, guid: 60b0671d83f29a047a07ed800a45e602, type: 2}

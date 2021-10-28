@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c79ca3ab7007e874f9fbc809f048a828, type: 3}
-  m_Name: Third Thing
+  m_Name: HealingPrayer
   m_EditorClassIdentifier: 
-  Name: Third Thing
+  Name: Healing Prayer
   ManaCost: 5
-  Type: 3
+  Type: 1
   Effects:
-  - {fileID: 11400000, guid: e42a1aa9d8c8d0f4c8d026f50a683136, type: 2}
-  Targets: {fileID: 11400000, guid: 600ff91cb4df1dd459c166ccfc45a414, type: 2}
+  - {fileID: 11400000, guid: 0ed24f9fd94c90746b9146cd246da18a, type: 2}
+  Targets: {fileID: 11400000, guid: b6f312fd1edc9e441bfef85317cbbd62, type: 2}
