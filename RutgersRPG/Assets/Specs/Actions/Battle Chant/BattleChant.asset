@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c79ca3ab7007e874f9fbc809f048a828, type: 3}
-  m_Name: Slash
+  m_Name: BattleChant
   m_EditorClassIdentifier: 
-  Name: Slash
-  ManaCost: 3
-  Type: 3
+  Name: Battle Chant
+  ManaCost: 2
+  Type: 1
   Effects:
-  - {fileID: 11400000, guid: b1688d44f73b4df48a5105c69458e2b7, type: 2}
-  Targets: {fileID: 11400000, guid: aa25f6dec24638f42ad2ef9a9a1a7432, type: 2}
+  - {fileID: 11400000, guid: 0978c2171c76ef5469e2c607002e56fa, type: 2}
+  Targets: {fileID: 11400000, guid: b0b35d3102f36ca499a3cd3803903664, type: 2}

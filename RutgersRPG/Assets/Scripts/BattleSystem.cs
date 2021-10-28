@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour {
     class Turn {
+        public Unit user;
         public MoveSpec move; 
         public List<Unit> targets;
-        public Turn (MoveSpec move, List<Unit> targets) {
+        public Turn (Unit user, MoveSpec move, List<Unit> targets) {
+            this.user = user;
             this.move = move;
             this.targets = targets;
         }
@@ -34,7 +36,7 @@ public class BattleSystem : MonoBehaviour {
     public List<UnitSpec> PlayerUnitSpecs, EnemyUnitSpecs;
     private int _currentPlayerIndex = 0;
     private MoveSpec _move;
-    private Dictionary<Unit, Turn> _turnOrder;
+    private List<Turn> _turnOrder = new List<Turn>();
     private List<Unit> _playerUnits = new List<Unit>();
     private List<Unit> _enemyUnits = new List<Unit>();
     private List<Unit> _targets = new List<Unit>();
@@ -44,8 +46,6 @@ public class BattleSystem : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        _turnOrder = new Dictionary<Unit, Turn>();
-
         for (int i = 0; i < PlayerUnitSpecs.Count; i++)
         {
             GameObject player = Instantiate(PCUnitPrefab, PlayerPositions[i]);
@@ -109,7 +109,7 @@ public class BattleSystem : MonoBehaviour {
     }
 
     void RegisterMove() {
-        _turnOrder.Add(_playerUnits[_currentPlayerIndex], new Turn(_move, new List<Unit>(_targets)));
+        _turnOrder.Add(new Turn(_playerUnits[_currentPlayerIndex], _move, new List<Unit>(_targets)));
         foreach (Unit t in _potentialTargets) {
             t.HideSelection();
         }
@@ -145,7 +145,7 @@ public class BattleSystem : MonoBehaviour {
             else {
                 _targets = new List<Unit>(_potentialTargets);
             }
-            _turnOrder.Add(u, new Turn(_move, new List<Unit>(_targets)));
+            _turnOrder.Add(new Turn(u, _move, new List<Unit>(_targets)));
             _potentialTargets.Clear();
             _targets.Clear();
         }
@@ -154,26 +154,29 @@ public class BattleSystem : MonoBehaviour {
 
     IEnumerator ResolveMoves()
     {
-        foreach (KeyValuePair<Unit, Turn> k in _turnOrder) {
-            if (k.Key.IsDead()) continue;
-            k.Value.move.UseMove(k.Key, k.Value.targets);
-            if (k.Key is PCUnit) {
-                PCUnit pcUnit = (PCUnit)k.Key;
-                pcUnit.SetMana(-k.Value.move.GetCost());
+        do {
+            _turnOrder.Sort((u, v) => (v.user.GetSpeed() - u.user.GetSpeed()));
+            Turn t = _turnOrder[0];
+            _turnOrder.Remove(t);
+            if (!t.user.IsDead()) {
+                t.move.UseMove(t.user, t.targets);
+                if (t.user is PCUnit) {
+                    PCUnit pcUnit = (PCUnit)t.user;
+                    pcUnit.SetMana(-t.move.GetCost());
+                }
+                if (_enemyUnits.TrueForAll((u) => u.IsDead())) {
+                    Debug.Log("Victory!");
+                    //Call some end screen function
+                    yield break;
+                }
+                if (_playerUnits.TrueForAll((u) => u.IsDead())) {
+                    Debug.Log("Defeat!");
+                    //Call some end screen function
+                    yield break;
+                }
+                yield return new WaitForSeconds(2);
             }
-            if (_enemyUnits.TrueForAll((u) => u.IsDead())) {
-                Debug.Log("Victory!");
-                //Call some end screen function
-                yield break;
-            }
-            if (_playerUnits.TrueForAll((u) => u.IsDead())) {
-                Debug.Log("Defeat!");
-                //Call some end screen function
-                yield break;
-            }
-            yield return new WaitForSeconds(2);
-        }
-        _turnOrder.Clear();
+        } while (_turnOrder.Count != 0);
         _currentPlayerIndex = 0;
         DisplayMoves();
     }

@@ -434,11 +434,11 @@ MonoBehaviour:
   PlayerUnitSpecs:
   - {fileID: 11400000, guid: 3297acaccde37c948a0cdb3fc6207c83, type: 2}
   - {fileID: 11400000, guid: 9d40c0d8ca956664ebe3132aae1c9ed6, type: 2}
-  - {fileID: 11400000, guid: 3297acaccde37c948a0cdb3fc6207c83, type: 2}
+  - {fileID: 11400000, guid: 7150069aea403494e8574f65e14407e2, type: 2}
   EnemyUnitSpecs:
   - {fileID: 11400000, guid: 89464a27e1669054bb3f29f371d237db, type: 2}
-  - {fileID: 11400000, guid: 89464a27e1669054bb3f29f371d237db, type: 2}
-  - {fileID: 11400000, guid: 89464a27e1669054bb3f29f371d237db, type: 2}
+  - {fileID: 11400000, guid: d9676d0f9af81ed418280c6b996cfc0b, type: 2}
+  - {fileID: 11400000, guid: 9484d5b39e8d35548ba39650a31be175, type: 2}
 --- !u!4 &1578346770
 Transform:
   m_ObjectHideFlags: 0

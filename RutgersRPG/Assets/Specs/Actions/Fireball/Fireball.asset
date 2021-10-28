@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c79ca3ab7007e874f9fbc809f048a828, type: 3}
-  m_Name: Fire Breath
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  Name: Fire Breath
-  ManaCost: 0
-  Type: 3
+  Name: Fireball
+  ManaCost: 3
+  Type: 1
   Effects:
-  - {fileID: 11400000, guid: d92f54668a233db44a6994357ef3a8db, type: 2}
-  Targets: {fileID: 11400000, guid: 790f13c38ac85694a8cc53ab33f3f91e, type: 2}
+  - {fileID: 11400000, guid: 82bd5f8af28e0204ba67116f6a002192, type: 2}
+  Targets: {fileID: 11400000, guid: 28ca5b1fb6c3fdb419d27b5bbf5521fc, type: 2}

@@ -20,5 +20,5 @@ MonoBehaviour:
   BattleSprite: {fileID: 21300000, guid: d2b434db618c2f546915b2ecbd55ddd3, type: 3}
   Movepool:
   - {fileID: 11400000, guid: 2112479a6de1f6a4b91482ec0e4ba886, type: 2}
-  - {fileID: 11400000, guid: eef67a69407b883468308982c19465c3, type: 2}
+  - {fileID: 11400000, guid: ac49f55641cfdc4419d6fc628a94a3d8, type: 2}
   - {fileID: 11400000, guid: 10c1f0dc2b2e63149832fb7e32bef185, type: 2}

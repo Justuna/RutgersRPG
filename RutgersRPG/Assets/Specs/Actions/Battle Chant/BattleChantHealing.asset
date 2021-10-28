@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c79ca3ab7007e874f9fbc809f048a828, type: 3}
-  m_Name: Slash
+  m_Script: {fileID: 11500000, guid: ebca8ce26d759ac4f8c11c880af46189, type: 3}
+  m_Name: BattleChantHealing
   m_EditorClassIdentifier: 
-  Name: Slash
-  ManaCost: 3
-  Type: 3
-  Effects:
-  - {fileID: 11400000, guid: b1688d44f73b4df48a5105c69458e2b7, type: 2}
-  Targets: {fileID: 11400000, guid: aa25f6dec24638f42ad2ef9a9a1a7432, type: 2}
+  RawHPChange: 5

@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 892d68e6ec10bed4dbddd419a1d7e076, type: 3}
-  m_Name: Mage
+  m_Name: Cleric
   m_EditorClassIdentifier: 
-  Name: Mage
-  Health: 40
-  Mana: 50
-  Speed: 40
+  Name: Cleric
+  Health: 50
+  Mana: 30
+  Speed: 25
   Type: 0
-  BattleSprite: {fileID: 21300000, guid: 2c070b5a719ed0041acb3fa857160b6c, type: 3}
+  BattleSprite: {fileID: 21300000, guid: 02fde2f1a215dfc4ea7e161b1747603d, type: 3}
   Movepool:
-  - {fileID: 11400000, guid: ac49f55641cfdc4419d6fc628a94a3d8, type: 2}
   - {fileID: 11400000, guid: 60b0671d83f29a047a07ed800a45e602, type: 2}
+  - {fileID: 11400000, guid: abad1618ed63d674b820c45cd2c23f89, type: 2}
+  - {fileID: 11400000, guid: 10c1f0dc2b2e63149832fb7e32bef185, type: 2}

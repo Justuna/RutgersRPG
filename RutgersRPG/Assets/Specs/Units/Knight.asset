@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   Name: Knight
-  Health: 50
+  Health: 70
   Mana: 10
   Speed: 20
   Type: 0
@@ -21,4 +21,4 @@ MonoBehaviour:
   Movepool:
   - {fileID: 11400000, guid: c60be6f2c4f4fbe488449d1baa9dedd6, type: 2}
   - {fileID: 11400000, guid: 10c1f0dc2b2e63149832fb7e32bef185, type: 2}
-  - {fileID: 11400000, guid: ca328fae9381b594480507185f8e8ed2, type: 2}
+  - {fileID: 11400000, guid: 673a2e5a4eed06949963c6d1fca417d3, type: 2}
