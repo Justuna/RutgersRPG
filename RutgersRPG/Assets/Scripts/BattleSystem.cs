@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BattleSystem : MonoBehaviour {
     class Turn {
@@ -42,6 +43,8 @@ public class BattleSystem : MonoBehaviour {
     private List<Unit> _targets = new List<Unit>();
     private List<Unit> _potentialTargets = new List<Unit>();
 
+    public UnityEvent StartTurn = new UnityEvent();
+    public UnityEvent EndTurn = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
@@ -154,11 +157,22 @@ public class BattleSystem : MonoBehaviour {
 
     IEnumerator ResolveMoves()
     {
+        //Resolve start-of-turn modifier effects
+        StartTurn.Invoke();
+        yield return StartCoroutine(ResolveModifierEffects());
+
         do {
+            //Dynamically assess turn order (in case speed is changed mid-turn)
             _turnOrder.Sort((u, v) => (v.user.GetSpeed() - u.user.GetSpeed()));
             Turn t = _turnOrder[0];
             _turnOrder.Remove(t);
+
+            //Make sure turn can be processed, then process
             if (!t.user.IsDead()) {
+                //Replace with some sort of animation-based wait time
+                yield return new WaitForSeconds(2);
+
+                //Apply effect
                 t.move.UseMove(t.user, t.targets);
                 if (t.user is PCUnit) {
                     PCUnit pcUnit = (PCUnit)t.user;
@@ -174,10 +188,56 @@ public class BattleSystem : MonoBehaviour {
                     //Call some end screen function
                     yield break;
                 }
-                yield return new WaitForSeconds(2);
+
+                //In case an effect modifier was triggered, resolve modifier effects
+                yield return StartCoroutine(ResolveModifierEffects());
             }
         } while (_turnOrder.Count != 0);
+
         _currentPlayerIndex = 0;
+        
+        //Resolve end-of-turn modifier effects
+        EndTurn.Invoke();
+        yield return StartCoroutine(ResolveModifierEffects());
+
+        //Cleanup        
+        StartCoroutine("Cleanup");
+    }
+
+    List<ModifierWrapper> modifierList = new List<ModifierWrapper>();
+
+    //Modifier triggered, reserve place in turn order for animations
+    public void ReserveModifierEffect(ModifierWrapper modifier)
+    {
+        modifierList.Add(modifier);
+    }
+
+    IEnumerator ResolveModifierEffects()
+    {
+        while (modifierList.Count > 0)
+        {
+            //Replace with some animation-based wait time
+            yield return new WaitForSeconds(2);
+
+            //Call modifier and remove it from list
+            modifierList[0].ApplyEffect();
+            modifierList.RemoveAt(0);
+        }
+    }
+
+    
+
+    IEnumerator Cleanup()
+    {
+        
+        yield return new WaitForSeconds(2);
+        foreach (Unit u in _playerUnits)
+        {
+            foreach (ModifierWrapper m in u.Modifiers)
+            {
+                if (m.CompleteTurn()) u.Modifiers.Remove(m);
+            }
+        }
         DisplayMoves();
     }
 }

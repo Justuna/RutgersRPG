@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebca8ce26d759ac4f8c11c880af46189, type: 3}
-  m_Name: BashDamage
+  m_Script: {fileID: 11500000, guid: 3f07b2f02dbcdbc43b55dcaad3afc342, type: 3}
+  m_Name: Poison
   m_EditorClassIdentifier: 
-  RawHPChange: -5
+  Permanent: 0
+  Stackable: 0
+  NumberOfTurns: 3
+  Name: Poison
+  Effects:
+  - {fileID: 11400000, guid: f10bee271f862c647a731044b9106769, type: 2}
+  Event: 4

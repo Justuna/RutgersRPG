@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum TeamType {PLAYER, ENEMY}
 
@@ -23,6 +24,12 @@ public abstract class Unit : MonoBehaviour
     public UnitSelector Selector;
 
     public List<MoveSpec> Movepool;
+    public List<ModifierWrapper> Modifiers;
+
+    public UnityEvent TakeDamage = new UnityEvent();
+    public UnityEvent DealDamage = new UnityEvent();
+    public UnityEvent ReceiveHealing = new UnityEvent();
+    public UnityEvent GiveHealing = new UnityEvent();
 
     public virtual void Initialize(UnitSpec Spec)
     {
@@ -33,6 +40,7 @@ public abstract class Unit : MonoBehaviour
         Type = Spec.Type;
         ChildSprite.sprite = Spec.BattleSprite;
         Movepool = Spec.Movepool;
+        Modifiers = new List<ModifierWrapper>();
 
         Healthbar.SetMaxValue(MaxHealth);
     }
@@ -41,8 +49,11 @@ public abstract class Unit : MonoBehaviour
         return Speed;
     }
 
-    public int SetHealth(int amount)
+    public int ChangeHealth(int amount)
     {
+        if (amount <= 0) TakeDamage.Invoke();
+        else ReceiveHealing.Invoke();
+
         int initialHealth = CurrentHealth;
         CurrentHealth += amount;
         if (CurrentHealth < 0) CurrentHealth = 0;
@@ -50,6 +61,11 @@ public abstract class Unit : MonoBehaviour
 
         Healthbar.UpdateValue(CurrentHealth);
         return initialHealth - CurrentHealth;
+    }
+
+    public void AddModifier(ModifierWrapper modifier)
+    {
+        Modifiers.Add(modifier);
     }
 
     public bool IsDead()

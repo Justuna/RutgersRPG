@@ -9,6 +9,8 @@ public class HPChangeTargets : Effect
 
     public override void Apply(Unit user, Unit target)
     {
-        target.SetHealth(RawHPChange);
+        target.ChangeHealth(RawHPChange);
+        if (RawHPChange > 0) user.GiveHealing.Invoke();
+        else user.DealDamage.Invoke();
     }
 }

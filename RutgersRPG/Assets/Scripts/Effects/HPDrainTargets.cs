@@ -11,9 +11,12 @@ public class HPDrainTargets : Effect
 
     public override void Apply(Unit user, Unit target)
     {
-        int drain = target.SetHealth(TargetHPChange);
+        int drain = target.ChangeHealth(TargetHPChange);
         drain = (int)(drain * Multiplier);
         if (Recoil) drain *= -1;
-        user.SetHealth(drain);
+        user.ChangeHealth(drain);
+
+        if (TargetHPChange > 0) user.GiveHealing.Invoke();
+        else user.DealDamage.Invoke();
     }
 }
