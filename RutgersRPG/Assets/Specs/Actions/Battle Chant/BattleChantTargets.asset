@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e116994ef047da4b84c39c5acbe479e, type: 3}
   m_Name: BattleChantTargets
   m_EditorClassIdentifier: 
-  ChooseTargets: 0
-  NumberOfTargets: 0
+  ChooseTargets: 1
+  NumberOfTargets: 1
   TargetTeam: 1
   Friendly: 1

@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c79ca3ab7007e874f9fbc809f048a828, type: 3}
-  m_Name: Bash
+  m_Script: {fileID: 11500000, guid: 1bbeff6c6275e6c48a90f136474d8e47, type: 3}
+  m_Name: BattleChant Boost
   m_EditorClassIdentifier: 
-  Name: Bash
-  ManaCost: 0
-  Type: 0
-  Effects:
-  - {fileID: 11400000, guid: 5c55d4f43c031554c994c642f9761411, type: 2}
-  Targets: {fileID: 11400000, guid: 61025f020e382c74e973c00e466cf941, type: 2}
+  Modifier: {fileID: 11400000, guid: 1ba496f6e55ee29418d969ebf2a817b2, type: 2}

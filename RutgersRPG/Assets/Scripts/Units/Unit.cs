@@ -12,8 +12,12 @@ public abstract class Unit : MonoBehaviour
     public int CurrentHealth;
     public int MaxHealth;
 
-    public int Speed;
     public int Threat;
+
+    public float BaseSpeed;
+    public float BaseStrength;
+    public float BaseMagic;
+    public float BaseDefense;
 
     public TeamType Type;
 
@@ -26,6 +30,7 @@ public abstract class Unit : MonoBehaviour
     public List<MoveSpec> Movepool;
     public List<ModifierWrapper> Modifiers;
 
+
     public UnityEvent TakeDamage = new UnityEvent();
     public UnityEvent DealDamage = new UnityEvent();
     public UnityEvent ReceiveHealing = new UnityEvent();
@@ -36,7 +41,10 @@ public abstract class Unit : MonoBehaviour
         this.Spec = Spec;
         Name = Spec.Name;
         CurrentHealth = MaxHealth = Spec.Health;
-        Speed = Spec.Speed;
+        BaseSpeed = Spec.Speed;
+        BaseStrength = Spec.Strength;
+        BaseMagic = Spec.Magic;
+        BaseDefense = Spec.Defense;
         Type = Spec.Type;
         ChildSprite.sprite = Spec.BattleSprite;
         Movepool = Spec.Movepool;
@@ -45,8 +53,56 @@ public abstract class Unit : MonoBehaviour
         Healthbar.SetMaxValue(MaxHealth);
     }
 
-    public int GetSpeed() {
-        return Speed;
+    public float GetStat(Stat stat)
+    {
+        float flatAdd = 0;
+        float addPercent = 1;
+        float multPercent = 1;
+        float baseStat = 0;
+
+        switch (stat)
+        {
+            case Stat.STRENGTH:
+                baseStat = BaseStrength;
+                break;
+            case Stat.SPEED:
+                baseStat = BaseSpeed;
+                break;
+            case Stat.MAGIC:
+                baseStat = BaseMagic;
+                break;
+            case Stat.DEFENSE:
+                baseStat = BaseDefense;
+                break;
+        }
+
+        foreach (ModifierWrapper mw in Modifiers)
+        {
+            if (mw is StatModifierWrapper)
+            {
+                StatModifierWrapper smw = (StatModifierWrapper)mw;
+                StatModifier modifier = smw.GetStatMod();
+                if (modifier.stat == stat)
+                {
+                    switch(modifier.type)
+                    {
+                        case StatModifier.ModifierType.FLAT:
+                            flatAdd += modifier.amount;
+                            break;
+                        case StatModifier.ModifierType.ADD_PERCENT:
+                            addPercent += modifier.amount;
+                            break;
+                        case StatModifier.ModifierType.MULTI_PERCENT:
+                            multPercent *= modifier.amount;
+                            break;
+                    }
+                }
+            }
+        }
+
+        float amount = (baseStat + flatAdd) * addPercent * multPercent;
+        //Debug.Log(Name + "'s current " + stat.ToString() + " is " + amount + ".");
+        return amount;
     }
 
     public int ChangeHealth(int amount)

@@ -163,7 +163,7 @@ public class BattleSystem : MonoBehaviour {
 
         do {
             //Dynamically assess turn order (in case speed is changed mid-turn)
-            _turnOrder.Sort((u, v) => (v.user.GetSpeed() - u.user.GetSpeed()));
+            _turnOrder.Sort((u, v) => ((int)(v.user.GetStat(Stat.SPEED) - u.user.GetStat(Stat.SPEED))));
             Turn t = _turnOrder[0];
             _turnOrder.Remove(t);
 
@@ -204,39 +204,33 @@ public class BattleSystem : MonoBehaviour {
         StartCoroutine("Cleanup");
     }
 
-    List<ModifierWrapper> modifierList = new List<ModifierWrapper>();
+    List<EffectModifierWrapper> effectModifierList = new List<EffectModifierWrapper>();
 
     //Modifier triggered, reserve place in turn order for animations
-    public void ReserveModifierEffect(ModifierWrapper modifier)
+    public void ReserveModifierEffect(EffectModifierWrapper modifier)
     {
-        modifierList.Add(modifier);
+        effectModifierList.Add(modifier);
     }
 
     IEnumerator ResolveModifierEffects()
     {
-        while (modifierList.Count > 0)
+        while (effectModifierList.Count > 0)
         {
             //Replace with some animation-based wait time
             yield return new WaitForSeconds(2);
 
             //Call modifier and remove it from list
-            modifierList[0].ApplyEffect();
-            modifierList.RemoveAt(0);
+            effectModifierList[0].ApplyEffect();
+            effectModifierList.RemoveAt(0);
         }
     }
 
-    
-
     IEnumerator Cleanup()
     {
-        
         yield return new WaitForSeconds(2);
         foreach (Unit u in _playerUnits)
         {
-            foreach (ModifierWrapper m in u.Modifiers)
-            {
-                if (m.CompleteTurn()) u.Modifiers.Remove(m);
-            }
+            u.Modifiers.RemoveAll(m => m.CompleteTurn());
         }
         DisplayMoves();
     }

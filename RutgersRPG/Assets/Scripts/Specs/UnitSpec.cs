@@ -6,9 +6,17 @@ using UnityEngine;
 public class UnitSpec : ScriptableObject
 {
     public string Name;
+    
+    //Quantities
     public int Health;
     public int Mana;
-    public int Speed;
+
+    //Stat Block
+    public float Speed;
+    public float Strength;
+    public float Magic;
+    public float Defense;
+
     public TeamType Type;
     public Sprite BattleSprite;
     public List<MoveSpec> Movepool;

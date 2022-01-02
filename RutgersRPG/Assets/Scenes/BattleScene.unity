@@ -439,6 +439,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 89464a27e1669054bb3f29f371d237db, type: 2}
   - {fileID: 11400000, guid: d9676d0f9af81ed418280c6b996cfc0b, type: 2}
   - {fileID: 11400000, guid: 9484d5b39e8d35548ba39650a31be175, type: 2}
+  StartTurn:
+    m_PersistentCalls:
+      m_Calls: []
+  EndTurn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1578346770
 Transform:
   m_ObjectHideFlags: 0

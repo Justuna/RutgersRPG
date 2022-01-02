@@ -8,6 +8,6 @@ public class StatModifier : Modifier
     public enum ModifierType { FLAT, ADD_PERCENT, MULTI_PERCENT };
 
     public float amount;
-    public ModifierType modifierType;
-    public Stat modifierStat;
+    public ModifierType type;
+    public Stat stat;
 }

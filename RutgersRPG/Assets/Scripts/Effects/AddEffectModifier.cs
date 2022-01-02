@@ -9,7 +9,7 @@ public class AddEffectModifier : Effect
 
     public override void Apply(Unit user, Unit target)
     {
-        ModifierWrapper m = new ModifierWrapper(Modifier, user, target);
+        ModifierWrapper m = new EffectModifierWrapper(Modifier, user, target);
         target.AddModifier(m);
     }
 }
