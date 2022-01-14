@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum MoveType {WEAPON, MAGIC, STATUS, OTHER}
 
 [CreateAssetMenu(fileName = "NewActionSpec", menuName = "Specification/Action")]
 public class MoveSpec : ScriptableObject
 {
     public string Name;
     public int ManaCost;
-    public MoveType Type;
+    public int Priority;
     public List<Effect> Effects;
     public TargetSpec Targets;
 

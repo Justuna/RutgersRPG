@@ -1,1 +1,1 @@
-public enum Stat { STRENGTH, SPEED, MAGIC, DEFENSE };
+public enum Stat { STRENGTH, SPEED, MAGIC, DEFENSE, RESISTANCE };

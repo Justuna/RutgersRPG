@@ -16,6 +16,7 @@ public class UnitSpec : ScriptableObject
     public float Strength;
     public float Magic;
     public float Defense;
+    public float Resistance;
 
     public TeamType Type;
     public Sprite BattleSprite;

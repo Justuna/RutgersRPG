@@ -79,7 +79,6 @@ public class BattleSystem : MonoBehaviour {
         _move = move;
         ((PCUnit)_playerUnits[_currentPlayerIndex]).Menu.Hide();
         DisplayTargets();
-        
     }
 
     void DisplayTargets() 
@@ -163,7 +162,11 @@ public class BattleSystem : MonoBehaviour {
 
         do {
             //Dynamically assess turn order (in case speed is changed mid-turn)
-            _turnOrder.Sort((u, v) => ((int)(v.user.GetStat(Stat.SPEED) - u.user.GetStat(Stat.SPEED))));
+            _turnOrder.Sort((u, v) => {
+                int order = v.move.Priority - u.move.Priority;
+                if (order != 0) return order;
+                return (int)(v.user.GetStat(Stat.SPEED) - u.user.GetStat(Stat.SPEED));
+            });
             Turn t = _turnOrder[0];
             _turnOrder.Remove(t);
 
@@ -194,8 +197,6 @@ public class BattleSystem : MonoBehaviour {
             }
         } while (_turnOrder.Count != 0);
 
-        _currentPlayerIndex = 0;
-        
         //Resolve end-of-turn modifier effects
         EndTurn.Invoke();
         yield return StartCoroutine(ResolveModifierEffects());
@@ -232,6 +233,8 @@ public class BattleSystem : MonoBehaviour {
         {
             u.Modifiers.RemoveAll(m => m.CompleteTurn());
         }
+
+        _currentPlayerIndex = 0;
         DisplayMoves();
     }
 }

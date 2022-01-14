@@ -16,12 +16,12 @@ MonoBehaviour:
   Health: 40
   Mana: 50
   Speed: 40
-  Strength: 1
-  Magic: 0
-  Defense: 0
+  Strength: 10
+  Magic: 30
+  Defense: 10
+  Resistance: 30
   Type: 0
   BattleSprite: {fileID: 21300000, guid: 2c070b5a719ed0041acb3fa857160b6c, type: 3}
   Movepool:
-  - {fileID: 11400000, guid: ac49f55641cfdc4419d6fc628a94a3d8, type: 2}
-  - {fileID: 11400000, guid: 60b0671d83f29a047a07ed800a45e602, type: 2}
-  - {fileID: 11400000, guid: 673a2e5a4eed06949963c6d1fca417d3, type: 2}
+  - {fileID: 11400000, guid: dab9839a7b8dd074aafc0dcb985522bb, type: 2}
+  - {fileID: 11400000, guid: e848241338a8b614495b464a1b72867c, type: 2}

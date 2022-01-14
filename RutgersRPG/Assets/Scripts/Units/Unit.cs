@@ -18,6 +18,7 @@ public abstract class Unit : MonoBehaviour
     public float BaseStrength;
     public float BaseMagic;
     public float BaseDefense;
+    public float BaseResistance;
 
     public TeamType Type;
 
@@ -29,7 +30,6 @@ public abstract class Unit : MonoBehaviour
 
     public List<MoveSpec> Movepool;
     public List<ModifierWrapper> Modifiers;
-
 
     public UnityEvent TakeDamage = new UnityEvent();
     public UnityEvent DealDamage = new UnityEvent();
@@ -45,18 +45,19 @@ public abstract class Unit : MonoBehaviour
         BaseStrength = Spec.Strength;
         BaseMagic = Spec.Magic;
         BaseDefense = Spec.Defense;
+        BaseResistance = Spec.Resistance;
         Type = Spec.Type;
         ChildSprite.sprite = Spec.BattleSprite;
         Movepool = Spec.Movepool;
-        Modifiers = new List<ModifierWrapper>();
 
+        Modifiers = new List<ModifierWrapper>();
         Healthbar.SetMaxValue(MaxHealth);
     }
 
     public float GetStat(Stat stat)
     {
         float flatAdd = 0;
-        float addPercent = 1;
+        float addPercent = 0;
         float multPercent = 1;
         float baseStat = 0;
 
@@ -73,6 +74,9 @@ public abstract class Unit : MonoBehaviour
                 break;
             case Stat.DEFENSE:
                 baseStat = BaseDefense;
+                break;
+            case Stat.RESISTANCE:
+                baseStat = BaseResistance;
                 break;
         }
 
@@ -100,7 +104,7 @@ public abstract class Unit : MonoBehaviour
             }
         }
 
-        float amount = (baseStat + flatAdd) * addPercent * multPercent;
+        float amount = (baseStat + flatAdd + (baseStat * addPercent)) * multPercent;
         //Debug.Log(Name + "'s current " + stat.ToString() + " is " + amount + ".");
         return amount;
     }
