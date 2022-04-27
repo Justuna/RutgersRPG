@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e116994ef047da4b84c39c5acbe479e, type: 3}
-  m_Name: Priority Target
+  m_Name: HealTargets
   m_EditorClassIdentifier: 
   ChooseTargets: 1
   NumberOfTargets: 1
   TargetTeam: 1
-  Friendly: 0
+  Friendly: 1

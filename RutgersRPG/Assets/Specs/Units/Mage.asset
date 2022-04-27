@@ -17,7 +17,7 @@ MonoBehaviour:
   Mana: 50
   Speed: 40
   Strength: 10
-  Magic: 30
+  Magic: 25
   Defense: 10
   Resistance: 30
   Type: 0
